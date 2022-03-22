@@ -80,7 +80,7 @@ newBotToken = os.environ.get("newBot")
 print("running NewBot")
 
 try:
-  r = newBot.start(newBotToken)
+  r = newBot.run(newBotToken)
   
 except Exception as e:
   print(f"Error: {e}")
