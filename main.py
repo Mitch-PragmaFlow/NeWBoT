@@ -2,13 +2,14 @@ import discord
 from discord.ext import commands
 from discord_slash import SlashCommand
 import os
-
+#import asyncio
 
 
 print("Starting NewBot")
 
 newBot = commands.Bot(command_prefix='-')
 slash = SlashCommand(newBot, sync_commands=True)
+#loop = asyncio.get_event_loop
 
 
 
