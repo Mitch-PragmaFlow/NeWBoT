@@ -1,10 +1,7 @@
 import discord
-# from discord.ext import commands
-# from discord_slash import SlashCommand
 import os
-#import asyncio
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 load_dotenv()
 
 
@@ -13,6 +10,30 @@ print("Starting newBot")
 newBot = discord.Bot(debug_guilds=["911693934231703602"])
 #loop = asyncio.get_event_loop
 
+
+### Help
+@newBot.command(name="help", description="What can you help with?")
+async def help(ctx):
+  await ctx.respond(
+    {
+    "content": "This is a message with components",
+    "components": [
+        {
+            "type": 1,
+            "components": [
+                {
+                    "type": 2,
+                    "label": "Click me!",
+                    "style": 1,
+                    "custom_id": "click_one"
+                }
+            ]
+
+        }
+      ]
+    }
+  
+  )
 
 
 ### How do I buy Raider? ###
@@ -89,11 +110,11 @@ async def how_do_mounts_work(ctx):
   )
 
 newBotToken = os.getenv("newBotToken")
-print (newBotToken)
 print("running newBot")
 
 try:
   newBot.run(newBotToken)
+  
   
 except Exception as e:
   print(f"Error: {e}")
