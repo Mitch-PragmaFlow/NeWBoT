@@ -12,6 +12,30 @@ slash = SlashCommand(newBot, sync_commands=True)
 #loop = asyncio.get_event_loop
 
 
+### Help
+@slash.slash(name="help", description="What can you help with?")
+async def help(ctx):
+  await ctx.respond(
+    {
+    "content": "This is a message with components",
+    "components": [
+        {
+            "type": 1,
+            "components": [
+                {
+                    "type": 2,
+                    "label": "Click me!",
+                    "style": 1,
+                    "custom_id": "click_one"
+                }
+            ]
+
+        }
+    ]
+}
+  
+)
+
 
 ### How do I buy Raider? ###
 @slash.slash(name="buy_raider", description="How can I buy $Raider tokens?")
