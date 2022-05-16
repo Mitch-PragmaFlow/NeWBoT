@@ -1,10 +1,10 @@
 import requests
 import json
 import os
-from get_server_id import getServerId
+
 
 def registerGuildSlashCommand(_name, _description, _type):
-  server = getServerId("test")
+  server = getServerId("911693934231703602")
   appId = 935550057409814578
 
   url = f"https://discord.com/api/v8/applications/{appId}/guilds/{server}/commands"
