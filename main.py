@@ -11,11 +11,10 @@ newBot = commands.Bot(command_prefix='-')
 slash = SlashCommand(newBot, sync_commands=True)
 #loop = asyncio.get_event_loop
 
-
 ### Help
 @slash.slash(name="help", description="What can you help with?")
 async def help(ctx):
-  await ctx.respond(
+  await ctx.send(
     {
     "content": "This is a message with components",
     "components": [
@@ -31,16 +30,16 @@ async def help(ctx):
             ]
 
         }
-    ]
-}
-  
-)
+      ]
+    }  
+  )
+
 
 
 ### How do I buy Raider? ###
 @slash.slash(name="buy_raider", description="How can I buy $Raider tokens?")
 async def buy_raider(ctx):
-  await ctx.respond(
+  await ctx.send(
     "To buy $RAIDER tokens from SushiSwap, click here:\nhttps://app.sushi.com/swap?inputCurrency=ETH&outputCurrency=0xcd7361ac3307D1C5a46b63086a90742Ff44c63B3"
     )
 
