@@ -3,7 +3,9 @@ import discord
 # from discord_slash import SlashCommand
 import os
 #import asyncio
+from dotenv import load_dotenv
 
+load_dotenv()
 
 
 print("Starting newBot")
@@ -86,7 +88,8 @@ async def how_do_mounts_work(ctx):
     "When you navigate to the Questing page at https://econ.cryptoraiders.xyz/quests, you can open up your Raider stats with the little Icon to the right of their Level, Gen, and ID. \n\nIf you navigate to the Mounts tab, you’ll see all your available mounts so you can equip one to speed up your Raider! \n\nIf you have a Common mount (White, Brown, Black Mare) you’ll get a 50% speed boost. \n\nIf you have an Epic mount (Centurion, Night Mare) you’ll get a 150% speed boost! \n\nThese speed boosts apply both to the rate at which you collect materials on quests, and how quickly you return. And once you’ve equipped a Mount, you can use it for an unlimited number of quests until you unequip the mount. \n\nJust like questing, while a Mount is equipped it is gone from your wallet so you will not be able to sell it or trade it. Plan accordingly! \n\nSo saddle up! And let us know if you run into any problems 🙂. \n\nClick here for the original announcement: https://discord.com/channels/860057024611876865/860231627514707978/938329251025940550.\n\nClick here to purchase a mount: https://opensea.io/collection/crypto-raiders-mounts"
   )
 
-newBotToken = os.environ.get("newBot")
+newBotToken = os.getenv("newBotToken")
+print (newBotToken)
 print("running newBot")
 
 try:
