@@ -10,7 +10,6 @@ charset-normalizer==2.0.12
 cliapp
 Click
 cmdtest
-colorama
 command-not-found
 configobj
 constantly
