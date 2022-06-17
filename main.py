@@ -10,46 +10,73 @@ print("Starting newBot")
 newBot = discord.Bot(debug_guilds=["911693934231703602"])
 
 
-# ### Select Menu Def
-# class SelectionMenu(discord.ui.View):
-#     @discord.ui.select( # the decorator that lets you specify the properties of the select menu
-#         placeholder = "Choose a Flavor!", # the placeholder text that will be displayed if nothing is selected
-#         min_values = 1, # the minimum number of values that must be selected by the users
-#         max_values = 1, # the maxmimum number of values that can be selected by the users
-#         options = [ # the list of options from which users can choose, a required field
-#             discord.SelectOption(
-#                 label="Vanilla",
-#                 description="Pick this if you like vanilla!"
-#             ),
-#             discord.SelectOption(
-#                 label="Chocolate",
-#                 description="Pick this if you like chocolate!"
-#             ),
-#             discord.SelectOption(
-#                 label="Strawberry",
-#                 description="Pick this if you like strawberry!"
-#             )
-#         ]
-#     )
-#     async def select_callback(self, select, interaction): # the function called when the user is done selecting options
-#         await interaction.response.send_message(f"Awesome! I like {select.values[0]} too!")
+### Select Menu Def
+class SelectionMenu(discord.ui.View):
+    @discord.ui.select( # the decorator that lets you specify the properties of the select menu
+        placeholder = "Choose a Flavor!", # the placeholder text that will be displayed if nothing is selected
+        min_values = 1, # the minimum number of values that must be selected by the users
+        max_values = 1, # the maxmimum number of values that can be selected by the users
+        options = [ # the list of options from which users can choose, a required field
+            discord.SelectOption(
+                label="Vanilla",
+                description="Pick this if you like vanilla!"
+            ),
+            discord.SelectOption(
+                label="Chocolate",
+                description="Pick this if you like chocolate!"
+            ),
+            discord.SelectOption(
+                label="Strawberry",
+                description="Pick this if you like strawberry!"
+            )
+        ]
+    )
+    async def select_callback(self, select, interaction): # the function called when the user is done selecting options
+        #await interaction.response.send_message(f"Awesome! I like {select.values[0]} too!", ephemeral=True)        
+        
+        embed = discord.Embed(
+          title=select.values[0],     
+          type="video", 
+          url = "https://www.youtube.com/embed/yzJT2a9baik",
+          description = "This is a description of the video. \n\nIf you watch this video, you will gain whatever benefit is written in this paragraph. If you don't watch the video, then reading this will still probably make you learn something",
+          # color = "",
+                  
+          )
+        
+        embed.set_author(
+          name="Lang1y", 
+          url="https://twitter.com/Lang1y/", 
+          icon_url="https://pbs.twimg.com/profile_images/1515054621210853380/dIgQuqk9_400x400.jpg"
+          )
+      
+        embed.set_thumbnail(
+          url="https://storage.googleapis.com/crypto-raiders-assets/mobs/sprites/MOB_ANGEL_1.png"
+          )
+        
+        embed.set_footer(text="This is the footer. It contains text at the bottom of the embed")
+        
+        await 
+        await interaction.response.send_message(content="Video Name", embed=embed)
+        # await open("https://youtube.com")
 
-# ### Button Def
-# class Button(discord.ui.View): # Create a class called View that subclasses discord.ui.View
-#   @discord.ui.button(label="Click me!", style=discord.ButtonStyle.primary, emoji="😎") # Create a button with the label "😎 Click me!" with color Blurple
-#   async def button_callback(self, button, interaction): #Button Action
-#       await interaction.response.send_message("You clicked the button!") # Send a message when the button is clicked
+### Button Def
+class Button(discord.ui.View): # Create a class called View that subclasses discord.ui.View
+  @discord.ui.button(label="Click me!", style=discord.ButtonStyle.primary, emoji="😎") # Create a button with the label "😎 Click me!" with color Blurple
+  async def button_callback(self, button, interaction): #Button Action
+      await interaction.response.send_message("You clicked the button!") # Send a message when the button is clicked
 
-# ### Help
-# @newBot.slash_command(name="help", description="What can NeWBoT help with?")
-# async def help(ctx):
-#   await ctx.respond( "This a help message. You can tell because it is helpful", view=Button(), ephemeral=True )
+
+
+### Help
+@newBot.slash_command(name="help", description="What can NeWBoT help with?")
+async def help(ctx):
+  await ctx.respond( "This a help message. You can tell because it is helpful", view=Button(), ephemeral=True)
   
 
-# ### Selection Menu Demo
-# @newBot.slash_command(name="selection_menu_demo", description="A Demo of the selection Menu")
-# async def selection_menu_demo (ctx):
-#   await ctx.respond("This is a selection menu", view=SelectionMenu(), ephemeral=True)
+### Selection Menu Demo
+@newBot.slash_command(name="selection_menu_demo", description="A Demo of the selection Menu")
+async def selection_menu_demo (ctx):
+  await ctx.respond("This is a selection menu", view=SelectionMenu(), ephemeral=True)
 
 
 ### How do I buy Raider? ###
