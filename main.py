@@ -13,22 +13,18 @@ newBot = discord.Bot(debug_guilds=["911693934231703602"])
 ### Select Menu Def
 class SelectionMenu(discord.ui.View):
     @discord.ui.select( # the decorator that lets you specify the properties of the select menu
-        placeholder = "Choose a Flavor!", # the placeholder text that will be displayed if nothing is selected
+        placeholder = "Choose a video", # the placeholder text that will be displayed if nothing is selected
         min_values = 1, # the minimum number of values that must be selected by the users
         max_values = 1, # the maxmimum number of values that can be selected by the users
         options = [ # the list of options from which users can choose, a required field
             discord.SelectOption(
-                label="Vanilla",
-                description="Pick this if you like vanilla!"
-            ),
-            discord.SelectOption(
-                label="Chocolate",
-                description="Pick this if you like chocolate!"
-            ),
-            discord.SelectOption(
-                label="Strawberry",
-                description="Pick this if you like strawberry!"
-            )
+                label="A Raiders Guide to the World of Airium! Ep: 1",
+                description="Start Here"
+            )#,
+            # discord.SelectOption(
+            #     label="New Video Here",
+            #     description="One day soon this will be a video"
+            # )
         ]
     )
     async def select_callback(self, select, interaction): # the function called when the user is done selecting options
@@ -37,7 +33,7 @@ class SelectionMenu(discord.ui.View):
         embed = discord.Embed(
           title=select.values[0],     
           type="video", 
-          url = "https://www.youtube.com/embed/yzJT2a9baik",
+          url = "https://www.youtube.com/watch?v=EK2iwgFIqjc&feature=youtu.be",
           description = "This is a description of the video. \n\nIf you watch this video, you will gain whatever benefit is written in this paragraph. If you don't watch the video, then reading this will still probably make you learn something",
           # color = "",
                   
@@ -54,8 +50,6 @@ class SelectionMenu(discord.ui.View):
           )
         
         embed.set_footer(text="This is the footer. It contains text at the bottom of the embed")
-        
-        await 
         await interaction.response.send_message(content="Video Name", embed=embed)
         # await open("https://youtube.com")
 
@@ -74,9 +68,9 @@ async def help(ctx):
   
 
 ### Selection Menu Demo
-@newBot.slash_command(name="selection_menu_demo", description="A Demo of the selection Menu")
+@newBot.slash_command(name="guide_tutorial_videos", description="Tutorials to get you started")
 async def selection_menu_demo (ctx):
-  await ctx.respond("This is a selection menu", view=SelectionMenu(), ephemeral=True)
+  await ctx.respond("What would you like to learn about?", view=SelectionMenu(), ephemeral=True)
 
 
 ### How do I buy Raider? ###
