@@ -39,19 +39,18 @@ class SelectionMenu(discord.ui.View):
             )
         ]
     )
-    async def select_callback(self, select, interaction): # the function called when the user is done selecting options
-        #await interaction.response.send_message(f"Awesome! I like {select.values[0]} too!", ephemeral=True)        
-        key = str(select.values[0])
+    async def select_callback(self, select, interaction): # the function called when the user is done selecting options               
+        video = videoList[str(select.values[0])]
         embed = discord.Embed(
-          title = videoList[key]['title'],
+          title = video['title'],
           type = "video", 
-          url = videoList[key]['url'],
-          description = "This is a description of the video. \n\nIf you watch this video, you will gain whatever benefit is written in this paragraph. If you don't watch the video, then reading this will still probably make you learn something"
+          url = video['url'],
+          description = video['videoDescription']
           # color = "",    
           )
         
         embed.set_thumbnail(
-          url=videoList[key]['thumbURL']
+          url = video['thumbURL']
           )
         
         
@@ -62,22 +61,23 @@ class SelectionMenu(discord.ui.View):
           )
       
        
-        embed.set_footer(text="This is the footer. It contains text at the bottom of the embed")
+        #embed.set_footer(text="This is the footer. It contains text at the bottom of the embed")
+        
         await interaction.response.send_message(content="Video Name", embed=embed)
         # await open("https://youtube.com")
 
-### Button Def
-class Button(discord.ui.View): # Create a class called View that subclasses discord.ui.View
-  @discord.ui.button(label="Click me!", style=discord.ButtonStyle.primary, emoji="😎") # Create a button with the label "😎 Click me!" with color Blurple
-  async def button_callback(self, button, interaction): #Button Action
-      await interaction.response.send_message("You clicked the button!") # Send a message when the button is clicked
+# ### Button Def
+# class Button(discord.ui.View): # Create a class called View that subclasses discord.ui.View
+#   @discord.ui.button(label="Click me!", style=discord.ButtonStyle.primary, emoji="😎") # Create a button with the label "😎 Click me!" with color Blurple
+#   async def button_callback(self, button, interaction): #Button Action
+#       await interaction.response.send_message("You clicked the button!") # Send a message when the button is clicked
 
 
 
-### Help
-@newBot.slash_command(name="help", description="What can NeWBoT help with?")
-async def help(ctx):
-  await ctx.respond( "This a help message. You can tell because it is helpful", view=Button(), ephemeral=True)
+# ### Help
+# @newBot.slash_command(name="help", description="What can NeWBoT help with?")
+# async def help(ctx):
+#   await ctx.respond( "This a help message. You can tell because it is helpful", view=Button(), ephemeral=True)
   
 
 ### Selection Menu Demo
