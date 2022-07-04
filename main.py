@@ -1,5 +1,14 @@
 import discord
 import os
+import json
+
+
+#load tutorial video index
+videosJson = open('videos.json')
+videoList = json.load(videosJson)
+print (videoList)
+
+
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -18,26 +27,33 @@ class SelectionMenu(discord.ui.View):
         max_values = 1, # the maxmimum number of values that can be selected by the users
         options = [ # the list of options from which users can choose, a required field
             discord.SelectOption(
-                label="A Raiders Guide to the World of Airium! Ep: 1",
-                description="Start Here"
-            )#,
-            # discord.SelectOption(
-            #     label="New Video Here",
-            #     description="One day soon this will be a video"
-            # )
+                value = "1",
+                label = videoList['1']['title'],
+                description = videoList['1']['SelectMenuDescription']
+                
+            ),
+            discord.SelectOption(
+                value = "2",
+                label = videoList['2']['title'],
+                description = videoList['2']['SelectMenuDescription']
+            )
         ]
     )
     async def select_callback(self, select, interaction): # the function called when the user is done selecting options
         #await interaction.response.send_message(f"Awesome! I like {select.values[0]} too!", ephemeral=True)        
-        
+        key = str(select.values[0])
         embed = discord.Embed(
-          title=select.values[0],     
-          type="video", 
-          url = "https://www.youtube.com/watch?v=EK2iwgFIqjc&feature=youtu.be",
-          description = "This is a description of the video. \n\nIf you watch this video, you will gain whatever benefit is written in this paragraph. If you don't watch the video, then reading this will still probably make you learn something",
-          # color = "",
-                  
+          title = videoList[key]['title'],
+          type = "video", 
+          url = videoList[key]['url'],
+          description = "This is a description of the video. \n\nIf you watch this video, you will gain whatever benefit is written in this paragraph. If you don't watch the video, then reading this will still probably make you learn something"
+          # color = "",    
           )
+        
+        embed.set_thumbnail(
+          url=videoList[key]['thumbURL']
+          )
+        
         
         embed.set_author(
           name="Lang1y", 
@@ -45,10 +61,7 @@ class SelectionMenu(discord.ui.View):
           icon_url="https://pbs.twimg.com/profile_images/1515054621210853380/dIgQuqk9_400x400.jpg"
           )
       
-        embed.set_thumbnail(
-          url="https://storage.googleapis.com/crypto-raiders-assets/mobs/sprites/MOB_ANGEL_1.png"
-          )
-        
+       
         embed.set_footer(text="This is the footer. It contains text at the bottom of the embed")
         await interaction.response.send_message(content="Video Name", embed=embed)
         # await open("https://youtube.com")

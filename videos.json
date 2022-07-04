@@ -1,0 +1,17 @@
+{
+    "1": {
+        "title" : "A Raiders Guide to the World of Airium! Ep: 1",
+        "url" : "https://www.youtube.com/watch?v=EK2iwgFIqjc",
+        "SelectMenuDescription": "Start Here!",
+        "videoDescription" : "Intro To Raiders Pt. 1",
+        "thumbURL" : "https://storage.googleapis.com/crypto-raiders-assets/mobs/sprites/MOB_ANOMALY_1.png"
+    },
+
+    "2": {
+        "title" : "A Raiders Guide to the World of Airium! Ep: 2",
+        "url" : "https://www.youtube.com/watch?v=xb7iSy93YKM",
+        "SelectMenuDescription": "Continue to Here!",
+        "videoDescription" : "Intro To Raiders Pt. 1",
+        "thumbURL" : "https://storage.googleapis.com/crypto-raiders-assets/mobs/sprites/MOB_ANOMALY_1.png"
+    }
+}
